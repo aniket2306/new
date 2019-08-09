@@ -34,6 +34,20 @@ def LoginView(request):
     # success_url = '/'
     # template_name = 'accounts/login.html'
     lform = LoginForm(request.POST or None)
+
+    if lform.is_valid():
+        username = lform.cleaned_data.get('Email')
+        password = lform.cleaned_data.get('password')
+
+        user = authenticate(request, username = username, password = password)
+
+        if user is not None:
+            login(request,user)
+            return HttpResponse("IS logged in")
+        else:
+            return redirect('Signup')
+        # return HttpResponse("IS valid")
+
     return render(request, 'login.html',{'form':lform})
     # def form_valid(self, form):
     #     request = self.request
