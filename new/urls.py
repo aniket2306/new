@@ -13,7 +13,7 @@ urlpatterns = [
     url(r'admin/', admin.site.urls),
     url(r'^$', home_page, name='home'),
     url(r'^about/$', about_page, name='about'),
-    url(r'^login/$', LoginView.as_view(), name='login'),
+    url(r'^login/$', LoginView, name='login'),
     url(r'^register/guest/$', guest_register_view, name='Signup'),
     url(r'^logout/$', LogoutView.as_view(), name='logout'),
     url(r'^admin/', admin.site.urls),
@@ -23,7 +23,7 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    
+
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns = [
