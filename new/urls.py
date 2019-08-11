@@ -8,7 +8,7 @@ from django.conf import settings
 from django.contrib.auth.views import LogoutView
 from accounts.views import LoginView, RegisterView, guest_register_view
 from .views import home_page, about_page
-import notes
+from notes import urls as noteUrls
 urlpatterns = [
     url(r'admin/', admin.site.urls),
     url(r'^$', home_page, name='home'),
@@ -20,7 +20,7 @@ urlpatterns = [
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-urlpatterns =  [path('notes',include(notes.urls)),] + urlpatterns
+urlpatterns =  [path('notes',include(noteUrls)),] + urlpatterns
 
 if settings.DEBUG:
     urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
